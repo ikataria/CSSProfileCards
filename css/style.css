@@ -7,10 +7,10 @@
   box-sizing: border-box;
 }
 
-img{
-  display: block;
+/* || UTILITY CLASS */
+.nowrap{
+  white-space: nowrap;
 }
-
 
 /* || GENERAL STYLES */
 html {
@@ -51,6 +51,10 @@ nav a {
   font-size: 1.5rem;
   font-weight: bolder;
   padding: 0.5rem 0;
+}
+
+nav a:hover {
+  color: rgb(108, 110, 110);
 }
 
 main {
@@ -103,4 +107,77 @@ main {
 footer {
   bottom: 0;
   font-size: 1rem;
+}
+
+
+/* || Mobile Screen */
+@media screen and (min-width: 481px) {
+  body{
+    background-color: rebeccapurple;
+    background-image: radial-gradient(whitesmoke, rebeccapurple);
+  }
+
+  nav a{
+    font-size: 2rem;
+  }
+
+  .card img{
+    width: min(100%, 500px);
+    height: auto;
+    border: 8px double black;
+  }
+
+  
+  .card figcaption {
+    font-size: 2.5rem;
+  }
+
+  .card p {
+    font-size: 2rem;
+  }
+}
+
+/* || Ipads-tablets SCREEN */
+@media screen and (min-width: 768px) {
+  body{
+    background-color: red;
+    background-image: radial-gradient(whitesmoke, red);
+  }
+
+  nav{
+    display: none;
+  }
+
+  main{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card{
+    display: flex;
+    flex-flow: column nowrap;
+  }
+}
+/* || SMALL SCREEN Laptops */
+@media screen and (min-width: 1024px) {
+  body{
+    background-color: rebeccapurple;
+    background-image: radial-gradient(whitesmoke, rebeccapurple);
+  }
+}
+/* || LARGE SCREEN */
+@media screen and (min-width: 1200px) {
+  body{
+    background-color: rebeccapurple;
+    background-image: radial-gradient(whitesmoke, rebeccapurple);
+  }
+}
+/* || XL SCREEN */
+@media screen and (min-aspect-ratio: 7/4) and (orientation: landscape) {
+  body{
+    background-color: rgb(111, 108, 55);
+    background-image: radial-gradient(whitesmoke, rgb(111, 108, 55));
+  }
 }
