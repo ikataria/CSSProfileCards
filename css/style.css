@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+/* || RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img{
+  display: block;
+}
+
+
+/* || GENERAL STYLES */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1.5rem;
+  font-family: "Raleway", sans-serif, "Courier New", Courier, monospace;
+  background-color: #474747;
+  background-image: radial-gradient(whitesmoke, #474747);
+  color: white;
+}
+
+header,
+footer {
+  position: sticky;
+  background-color: rgb(43, 5, 78);
+  text-align: center;
+}
+
+header {
+  top: 0;
+
+}
+
+nav {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2px;
+  border: 2px solid black;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  padding: 0.5rem 0;
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.card{
+  scroll-margin-top: 8rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  border: 2px solid black;
+  border-radius: 12px;
+  background-color: rgb(175, 178, 180);
+}
+
+.card figure{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.card img{
+  width: min(100%, 320px);
+  height: auto;
+  border: 5px double black;
+  border-radius: 50%;
+}
+
+.card figcaption{
+  color: black;
+  font-size: 2rem;
+  font-weight: bolder;
+  text-align: center;
+  padding: 1rem;
+}
+
+.card p{
+  color: black;
+  margin-bottom: 1rem;
+}
+
+footer {
+  bottom: 0;
+  font-size: 1rem;
+}
