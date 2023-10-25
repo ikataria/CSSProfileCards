@@ -7,9 +7,40 @@
   box-sizing: border-box;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* || VARIABLES */
+:root {
+  /* FONTS */
+  --ff: "Raleway", sans-serif, "Courier New", Courier, monospace;
+  /* COLOR */
+  --bgColor: #475569;
+  --cardBgColor: #cbd5e1;
+  --hfColor: #1e293b;
+  --radialColor: whitesmoke;
+  --lightColor: whitesmoke;
+  --darkColor: #1e293b;
+  /* GENERAL */
+  --shadows: 0 6px 5px -5px var(--darkColor);
+}
+
 /* || UTILITY CLASS */
-.nowrap{
+.nowrap {
   white-space: nowrap;
+}
+
+/* || STYLES FOR DARK THEME */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bgColor: #000;
+    --cardBgColor: #868686;
+    --hfColor: #333;
+    --lightColor: #a7a7a7;
+  }
 }
 
 /* || GENERAL STYLES */
@@ -19,165 +50,236 @@ html {
 
 body {
   font-size: 1.5rem;
-  font-family: "Raleway", sans-serif, "Courier New", Courier, monospace;
-  background-color: #474747;
-  background-image: radial-gradient(whitesmoke, #474747);
-  color: white;
+  font-family: var(--ff);
+  min-height: 100vh;
+  background-color: var(--bgColor);
+  background-image: radial-gradient(var(--radialColor), var(--bgColor));
+  color: var(--lightColor);
+  display: flex;
+  flex-direction: column;
 }
 
 header,
 footer {
   position: sticky;
-  background-color: rgb(43, 5, 78);
+  background-color: var(--hfColor);
   text-align: center;
+  color: var(--lightColor);
+  z-index: 1;
 }
 
 header {
   top: 0;
-
 }
 
 nav {
-  background-color: white;
+  background-color: var(--lightColor);
+  padding: 0.5rem;
+  border-bottom: 2px solid var(--darkColor);
+  font-weight: bolder;
   display: flex;
   justify-content: space-around;
-  margin-top: 2px;
-  border: 2px solid black;
+  box-shadow: var(--shadows);
 }
 
-nav a {
+/* nav a:link,
+nav a:visited {
+  color: #000;
+} */
+
+/* Same as above */
+nav a:any-link {
+  color: #1e293b;
   text-decoration: none;
-  color: black;
-  font-size: 1.5rem;
-  font-weight: bolder;
-  padding: 0.5rem 0;
 }
 
-nav a:hover {
-  color: rgb(108, 110, 110);
+/* nav a:hover,
+nav a:focus {
+  color: hsla(0, 0%, 20%, 0.6);
+} */
+
+/* Same as above */
+nav :is(a:hover, a:focus) {
+  color: hsla(0, 77%, 43%, 0.6);
 }
 
 main {
-  display: flex;
   flex-grow: 1;
-  min-height: 100vh;
+  display: flex;
   flex-direction: column;
-}
-
-.card{
-  scroll-margin-top: 8rem;
-  display: flex;
-  flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
-  margin: 0.5rem;
-  border: 2px solid black;
-  border-radius: 12px;
-  background-color: rgb(175, 178, 180);
-}
-
-.card figure{
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
+  gap: 1.5rem;
   padding: 1rem;
-}
-
-.card img{
-  width: min(100%, 320px);
-  height: auto;
-  border: 5px double black;
-  border-radius: 50%;
-}
-
-.card figcaption{
-  color: black;
-  font-size: 2rem;
-  font-weight: bolder;
-  text-align: center;
-  padding: 1rem;
-}
-
-.card p{
-  color: black;
-  margin-bottom: 1rem;
+  color: var(--darkColor);
 }
 
 footer {
   bottom: 0;
-  font-size: 1rem;
 }
 
+/* || PROFILE CARD */
+.card {
+  scroll-margin-top: 8rem;
+  width: min(100%, 320px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid var(--darkColor);
+  border-radius: 12px;
+  background-color: var(--cardBgColor);
+}
+
+.card:target {
+  border: 5px double #1e293b;
+}
+
+.card figure {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.card img {
+  border: 5px double var(--darkColor);
+  border-radius: 50%;
+}
+
+.card img:not([alt]) {
+  border: 10px solid red;
+}
+
+.card figcaption {
+  font-weight: bolder;
+  font-size: 2rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+.card figcaption::after {
+  content: "🍁";
+  display: block;
+}
+
+.card figcaption::first-letter {
+  font-size: 3rem;
+}
+
+.card p {
+  position: relative;
+}
+
+/* Suedo elements */
+.card p::before {
+  content: open-quote;
+  font-size: 3em;
+  position: absolute;
+  top: -0.25em;
+  left: -0.5em;
+}
+
+.card p::after {
+  content: close-quote;
+  font-size: 3em;
+  position: absolute;
+  top: -0.25em;
+  right: -0.5em;
+}
 
 /* || Mobile Screen */
 @media screen and (min-width: 481px) {
-  body{
-    background-color: rebeccapurple;
-    background-image: radial-gradient(whitesmoke, rebeccapurple);
+  main {
+    justify-content: center;
+    flex-flow: row wrap;
+    padding: 1rem;
   }
 
-  nav a{
+  nav a {
     font-size: 2rem;
   }
 
-  .card img{
+  .card img {
     width: min(100%, 500px);
     height: auto;
-    border: 8px double black;
-  }
-
-  
-  .card figcaption {
-    font-size: 2.5rem;
+    border: 8px double var(--darkColor);
   }
 
   .card p {
     font-size: 2rem;
   }
+
+  footer h2 {
+    font-size: 1.5rem;
+    padding: 6px 0;
+  }
+
+  .card:last-child {
+    order: -1;
+  }
 }
 
 /* || Ipads-tablets SCREEN */
 @media screen and (min-width: 768px) {
-  body{
-    background-color: red;
-    background-image: radial-gradient(whitesmoke, red);
-  }
-
-  nav{
+  nav {
     display: none;
   }
 
-  main{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
+  .card {
+    width: min(100%, 325px);
   }
 
-  .card{
-    display: flex;
-    flex-flow: column nowrap;
+  .card figure {
+    flex-flow: column-reverse;
+  }
+
+  .card p {
+    margin-top: 1rem;
   }
 }
+
 /* || SMALL SCREEN Laptops */
 @media screen and (min-width: 1024px) {
-  body{
-    background-color: rebeccapurple;
-    background-image: radial-gradient(whitesmoke, rebeccapurple);
+  .card {
+    width: min(100%, 350px);
+  }
+
+  .card figcaption {
+    font-size: 1.5rem;
+  }
+
+  .card p {
+    font-size: 25px;
   }
 }
+
 /* || LARGE SCREEN */
 @media screen and (min-width: 1200px) {
-  body{
-    background-color: rebeccapurple;
-    background-image: radial-gradient(whitesmoke, rebeccapurple);
+  .card {
+    width: min(33% - 1rem, 500px);
   }
 }
-/* || XL SCREEN */
-@media screen and (min-aspect-ratio: 7/4) and (orientation: landscape) {
-  body{
-    background-color: rgb(111, 108, 55);
-    background-image: radial-gradient(whitesmoke, rgb(111, 108, 55));
+
+/* || Mobile device screen */
+@media screen and (min-aspect-ratio: 7/4) and (max-height: 425px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    display: none;
+  }
+
+  main {
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+  }
+
+  .card {
+    width: min(33% - 0.25rem, 200px);
+  }
+
+  .card figcaption,
+  .card p {
+    font-size: 1rem;
   }
 }
